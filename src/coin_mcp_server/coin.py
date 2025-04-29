@@ -1,7 +1,6 @@
 from typing import Any
 import httpx
 from mcp.server.fastmcp import FastMCP
-from typing import Annotated
 from pydantic import Field
 
 mcp =  FastMCP("coin")
@@ -31,17 +30,19 @@ async def get_price(coin: str = Field(
     ret = await get_coin_price(coin)
 
     if not ret or "data" not in ret:
-        return "Unable to fetch data."
+        return "无法获取数据。"
 
     if not ret["data"]:
-        return "No data for coin."
+        return f"未找到 {coin} 的数据。"
 
     if "c" in ret["data"] and ret["data"]["c"]:
         price = ret["data"]["c"]
-    return price
+        return f"{coin} 当前价格: {price} USDT"
+    return "无法获取价格信息。"
 
-
+def main():
+    """启动 MCP 服务器"""
+    mcp.run(transport='stdio')
 
 if __name__ == "__main__":
-    # Initialize and run the server
-    mcp.run(transport='stdio')
+    main()

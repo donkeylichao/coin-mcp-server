@@ -1,19 +1,23 @@
 [project]
 name = "coin-mcp-server"
 version = "0.1.0"
-description = "Add your description here"
+description = "加密货币价格查询服务"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.6.0",
+    "fastapi>=0.100.0",
+    "pydantic>=2.0.0",
+    "starlette>=0.27.0",
+    "protobuf>=4.0.0"
 ]
 
 [project.scripts]
-arxiv-mcp-server = "coin-mcp-server:main"
+coin-mcp-server = "coin_mcp_server.coin:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/coin-mcp-server"]
+packages = ["src/coin_mcp_server"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
