@@ -37,7 +37,9 @@ async def get_price(coin: str = Field(
 
     if "c" in ret["data"] and ret["data"]["c"]:
         price = ret["data"]["c"]
-        return f"{coin} 当前价格: {price} USDT"
+        max_price = ret["data"]["h"]
+        min_price = ret["data"]["l"]
+        return f"{coin} 当前价格: {price} USDT, 今日最高价格: {max_price} USDT, 今日最低价格: {min_price} USDT"
     return "无法获取价格信息。"
 
 def main():
