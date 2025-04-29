@@ -1,5 +1,5 @@
 [project]
-name = "coin"
+name = "coin-mcp-server"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -8,3 +8,12 @@ dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.6.0",
 ]
+
+[project.scripts]
+arxiv-mcp-server = "coin-mcp-server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coin-mcp-server"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
